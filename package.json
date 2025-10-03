@@ -1,0 +1,38 @@
+{
+  "name": "wb-google-sheets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "dev": "nodemon --exec ts-node src/main.ts",
+    "debug": "nodemon --exec \"node --inspect=9229 -r ts-node/register src/main.ts\"",
+    "start": "node dist/main.js",
+    "knex:run": "knex --knexfile ./src/knex/knexfile.ts",
+    "migrate:make": "npm run knex:run -- migrate:make --",
+    "migrate:latest": "npm run build && knex --knexfile dist/knex/knexfile.js migrate:latest",
+    "migrate:rollback": "npm run build && knex --knexfile dist/knex/knexfile.js migrate:rollback",
+    "seed:make": "npm run knex:run -- seed:make --",
+    "seed:run": "npm run knex:run -- seed:run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.5.2",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "node-cron": "^4.2.1",
+    "pg": "^8.16.3"
+  }
+}
